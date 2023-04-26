@@ -1,3 +1,4 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:gdsc_flutter_course_session4_widgets_part2/product.dart';
 import 'package:gdsc_flutter_course_session4_widgets_part2/product_card.dart';
@@ -8,10 +9,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 
 
+
 //-------------------------------------------------------------////-------------------------------------------------------------//
 //--------------------- Inkwell.. turn any widget into a clickable widget ------------//
 //-------------------------------------------------------------////-------------------------------------------------------------//
-
 
 
 
@@ -107,18 +108,9 @@ Color inkwellTextColor = Colors.black;
 
 
 
-
-
-
-
-
-
 //-------------------------------------------------------------////-------------------------------------------------------------//
 //--------------------- GestureDetector widget ------------//
 //-------------------------------------------------------------////-------------------------------------------------------------//
-
-
-
 
 
 
@@ -280,9 +272,14 @@ supportedDevices
 
 
 
+
+
 //-------------------------------------------------------------////-------------------------------------------------------------//
 //--------------------- List tile------------//
 //-------------------------------------------------------------////-------------------------------------------------------------//
+
+
+
 
 
 
@@ -358,9 +355,6 @@ class _MyAppState extends State<MyApp> {
 }
 */
 //-------------------------------------------------------------//
-
-
-
 
 
 
@@ -456,7 +450,9 @@ floatingActionButton: FloatingActionButton(onPressed: () {  },child: const Icon(
 
 
 
-
+//-------------------------------------------------------------////-------------------------------------------------------------//
+//--------------------- ListView.builder ------------//
+//-------------------------------------------------------------////-------------------------------------------------------------//
 
 
 
@@ -556,7 +552,6 @@ floatingActionButton: FloatingActionButton(onPressed: () {  },child: const Icon(
 }
 */
 
-
 //-------------------------------------------------------------//
 
 
@@ -564,6 +559,12 @@ floatingActionButton: FloatingActionButton(onPressed: () {  },child: const Icon(
 
 
 
+//-------------------------------------------------------------////-------------------------------------------------------------//
+//--------------------- ExpansionTile (Expandable widgets) ------------//
+//-------------------------------------------------------------////-------------------------------------------------------------//
+
+
+
 
 
 
@@ -571,13 +572,23 @@ floatingActionButton: FloatingActionButton(onPressed: () {  },child: const Icon(
 
 
 //-------------------------------------------------------------//
-//adding/deleting items from a list at runtime
+//ExpansionTile
+//a tile, when tapped, expands to show its children
 
+/*
+How to use
+simply replace the list tile with the expansion tile
+and add whatever you want to view when expanded as children to the expansion tile
+
+and you'll need to replace the tileColor property with: backgroundColor
+ */
+/*
 class Contact{
   String name;
   String? phoneNumber;
   String? imageURL;
-  Contact({required this.name,this.phoneNumber, this.imageURL});
+  String about;
+  Contact({required this.name,this.phoneNumber, this.imageURL, required this.about});
 }
 
 void main() => runApp(MyApp());
@@ -591,15 +602,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   List<Contact> contacts = [
-    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png"),
-    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png"),
-    Contact(name: "Mariam Alaa", phoneNumber: '01111011011', imageURL: "assets/dash3.png"),
-    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png"),
-    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png"),
-    Contact(name: "Mariam Alaa", phoneNumber: '01111011011', imageURL: "assets/dash3.png"),
-    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png"),
-    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png"),
-    Contact(name: "Mariam Alaa", phoneNumber: '01111011011', imageURL: "assets/dash3.png"),
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
 
   ];
 
@@ -615,64 +629,72 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-                Container(
-                height: 700, //you must contain the listview.builder with a defined-size container
-                  //otherwise, you'll get RenderBox error (failed to assert: has size)
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  Container(
+                    height: 700, //you must contain the listview.builder with a defined-size container
+                    //otherwise, you'll get RenderBox error (failed to assert: has size)
+                    child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
 
-                  itemCount: contacts.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                    child: ListTile(
-                    leading: CircleAvatar(
-                    radius: 33,
-                    child: CircleAvatar(
-                    radius: 27,
-                    backgroundColor: Colors.white,
-                    /////////////////////////////////////
-                      //to avoid run-time errors if the imageURL was null, add a default image
-                    foregroundImage: AssetImage("${contacts[index].imageURL!=null?contacts[index].imageURL:("assets/flappy_dash.gif")}"),
-                    ),
-                    ),
-                    title: Text(contacts[index].name, style: const TextStyle(color: Colors.black),),
-                    subtitle: Text("${contacts[index].phoneNumber}", style: const TextStyle(color: Colors.black),),
-                    trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
-                      setState(() {
-                        contacts.remove(contacts[index]);
-                      });
 
-                    },),
-                    tileColor: Colors.white,
-                    iconColor: Colors.black,
-                    textColor: Colors.black,
-                    ),
-                    ),
-                    );
+                              child: ExpansionTile(
 
-                  }
-                ),
-              ),
-            ],
+
+                                leading: CircleAvatar(
+                                  radius: 33,
+                                  child: CircleAvatar(
+                                    radius: 27,
+                                    backgroundColor: Colors.white,
+                                    /////////////////////////////////////
+                                    //to avoid run-time errors if the imageURL was null, add a default image
+                                    foregroundImage: AssetImage("${contacts[0].imageURL!=null?contacts[0].imageURL:("assets/flappy_dash.gif")}"),
+                                  ),
+                                ),
+                                title: Text(contacts[0].name, style: const TextStyle(color: Colors.black),),
+                                subtitle: Text("${contacts[0].phoneNumber}", style: const TextStyle(color: Colors.black),),
+                                trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
+                                  setState(() {
+                                    contacts.remove(contacts[0]);
+                                  });
+
+                                },),
+                                backgroundColor: Colors.white,
+                                iconColor: Colors.black,
+                                textColor: Colors.black,
+
+
+                                children: [
+                                  SizedBox(
+                                    height: 100,
+                                    child: Text("${contacts[0].about}"),
+
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                    ),
+                ]
             ),
           ),
+
         ),
-floatingActionButton: FloatingActionButton(onPressed: () { 
-  setState(() {
-   
-      contacts.add(Contact(name: "New contact", phoneNumber: "123", ));
-  
-  });
-},child: const Icon(Icons.add),),
+
+
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          setState(() {
+
+            contacts.add(Contact(name: "New contact", phoneNumber: "123", about: 'someone I met at school', ));
+
+          });
+        },child: const Icon(Icons.add),),
       ),
     );
   }
 }
-
+*/
 //-------------------------------------------------------------//
 
 
@@ -683,9 +705,127 @@ floatingActionButton: FloatingActionButton(onPressed: () {
 
 
 //-------------------------------------------------------------//
-//
+//List of ExpansionTiles
+//a tile, when tapped, expands to show its children
+
+/*
+class Contact{
+  String name;
+  String? phoneNumber;
+  String? imageURL;
+  String about;
+  Contact({required this.name,this.phoneNumber, this.imageURL, required this.about});
+}
+
+void main() => runApp(MyApp());
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  List<Contact> contacts = [
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
+    Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png",  about: "Handsome, Awesome, young gentleman"),
+    Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png", about: "The Therapist I met at the airport"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png", about: "Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam.. Mariam..  Mariam..   "),
+
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Contacts"),
+        ),
+
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  Container(
+                    height: 700, //you must contain the listview.builder with a defined-size container
+                    //otherwise, you'll get RenderBox error (failed to assert: has size)
+                    child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+
+                        itemCount: contacts.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              child: ExpansionTile(
+                                leading: CircleAvatar(
+                                  radius: 33,
+                                  child: CircleAvatar(
+                                    radius: 27,
+                                    backgroundColor: Colors.white,
+                                    /////////////////////////////////////
+                                    //to avoid run-time errors if the imageURL was null, add a default image
+                                    foregroundImage: AssetImage("${contacts[index].imageURL!=null?contacts[index].imageURL:("assets/flappy_dash.gif")}"),
+                                  ),
+                                ),
+                                title: Text(contacts[index].name, style: const TextStyle(color: Colors.black),),
+                                subtitle: Text("${contacts[index].phoneNumber}", style: const TextStyle(color: Colors.black),),
+                                trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
+                                  setState(() {
+                                    contacts.remove(contacts[index]);
+                                  });
+
+                                },),
+                                // tileColor: Colors.white,
+                                iconColor: Colors.black,
+                                textColor: Colors.black,
 
 
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    child: Text("${contacts[index].about}"),
+
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+
+                    ),
+                  ),
+
+                ]
+            ),
+          ),
+
+        ),
+
+
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          setState(() {
+
+            contacts.add(Contact(name: "New contact", phoneNumber: "123", about: 'someone I met at school', ));
+
+          });
+        },child: const Icon(Icons.add),),
+      ),
+    );
+  }
+}
+*/
 //-------------------------------------------------------------//
 
 
@@ -693,277 +833,146 @@ floatingActionButton: FloatingActionButton(onPressed: () {
 
 
 
-
-
-
-
-
 //-------------------------------------------------------------//
-//
+//adding/deleting items from a list at runtime
+/*
+class Contact {
+  String name;
+  String? phoneNumber;
+  String? imageURL;
+  Contact({required this.name, this.phoneNumber, this.imageURL});
+}
 
+void main() => runApp(MyApp());
 
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<Contact> contacts = [
+    Contact(
+        name: "Mohamed Mahmoud",
+        phoneNumber: '01001412578',
+        imageURL: "assets/dash.png"),
+    Contact(
+        name: "Ali Abdulrahman",
+        phoneNumber: '01234567891',
+        imageURL: "assets/dash2.png"),
+    Contact(
+        name: "Mariam Alaa",
+        phoneNumber: '01111011011',
+        imageURL: "assets/dash3.png"),
+    Contact(
+        name: "Mohamed Mahmoud",
+        phoneNumber: '01001412578',
+        imageURL: "assets/dash.png"),
+    Contact(
+        name: "Ali Abdulrahman",
+        phoneNumber: '01234567891',
+        imageURL: "assets/dash2.png"),
+    Contact(
+        name: "Mariam Alaa",
+        phoneNumber: '01111011011',
+        imageURL: "assets/dash3.png"),
+    Contact(
+        name: "Mohamed Mahmoud",
+        phoneNumber: '01001412578',
+        imageURL: "assets/dash.png"),
+    Contact(
+        name: "Ali Abdulrahman",
+        phoneNumber: '01234567891',
+        imageURL: "assets/dash2.png"),
+    Contact(
+        name: "Mariam Alaa",
+        phoneNumber: '01111011011',
+        imageURL: "assets/dash3.png"),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Contacts"),
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Container(
+                height:
+                    700, //you must contain the listview.builder with a defined-size container
+                //otherwise, you'll get RenderBox error (failed to assert: has size)
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: contacts.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              radius: 33,
+                              child: CircleAvatar(
+                                radius: 27,
+                                backgroundColor: Colors.white,
+                                /////////////////////////////////////
+                                //to avoid run-time errors if the imageURL was null, add a default image
+                                foregroundImage: AssetImage(
+                                    "${contacts[index].imageURL != null ? contacts[index].imageURL : ("assets/flappy_dash.gif")}"),
+                              ),
+                            ),
+                            title: Text(
+                              contacts[index].name,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+
+                            subtitle: Text(
+                              "${contacts[index].phoneNumber}",
+                              style: const TextStyle(color: Colors.black),
+                            ),
+
+                            trailing: IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () {
+                                setState(() {
+                                  contacts.remove(contacts[index]);
+                                });
+                              },
+                            ),
+                            // tileColor: Colors.white,
+                            iconColor: Colors.black,
+                            textColor: Colors.black,
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ]),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              contacts.add(Contact(
+                name: "New contact",
+                phoneNumber: "123",
+              ));
+            });
+          },
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
+*/
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-//-------------------------------------------------------------//
-//
-
-
-//-------------------------------------------------------------//
-
-
-
-
-
 
 
 
@@ -974,181 +983,145 @@ floatingActionButton: FloatingActionButton(onPressed: () {
 //
 
 
+
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
-
 //-------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
 
 //-------------------------------------------------------------//
 //
 
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
 
 //-------------------------------------------------------------//
 
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
