@@ -1,4 +1,4 @@
-name: gdsc_asu_flutter_course_session5_widgets_part3
+name: gdsc_flutter_course_session4_widgets_part2
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=2.19.3 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -88,3 +89,19 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+
+
+
+
+  assets:
+    - assets/dash.png
+    - assets/dash1.png
+    - assets/dash2.png
+    - assets/dash3.png
+    - assets/dash4.png
+    - assets/dash5.png
+    - assets/dashatars.png
+    - assets/flappy_dash.gif
+    - assets/verticalDivider.png
