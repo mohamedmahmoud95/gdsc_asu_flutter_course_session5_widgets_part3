@@ -1,17 +1,29 @@
 # gdsc_asu_flutter_course_session5_widgets_part3
 
-A new Flutter project.
+GDSC-ASU-Flutter-course-session5-widgets-part3-and-navigation
 
-## Getting Started
+This is the code written in the 5th session of GDSC ASU Flutter course containing code examples on the following Flutter content:
 
-This project is a starting point for a Flutter application.
+List tiles
 
-A few resources to get you started if this is your first Flutter project:
+List View
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Grid View
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# gdsc_asu_flutter_course_session5_widgets_part3
+Bottom sheet widget
+
+Expandable cards
+
+Flutter app Navigation
+
+Routing
+
+Bottom navigation bar
+
+Navigation using tab bar
+
+Drawer
+
+Multi-screen app
+
+Project: e-commerce app
