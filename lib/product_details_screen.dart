@@ -161,7 +161,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ],
                   ),
                 ),
-                const Divider(color: Colors.grey, thickness: 1,),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Divider(color: Colors.grey, thickness: 1, ),
+                ),
 
                 const SizedBox(height: 20,),
 
