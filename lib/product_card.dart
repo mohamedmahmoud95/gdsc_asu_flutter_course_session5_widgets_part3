@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/product_details_screen.dart';
 import 'product.dart';
 
 
@@ -14,54 +15,63 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      Card(
+      GestureDetector(
+        onTap: (){
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) =>  (ProductDetailsScreen(product: product)),
+            ),
+          );
+        },
+        child: Card(
 
-        child: SizedBox(
+          child: SizedBox(
 
-          width: 190,
-          height: 250,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    color: Colors.grey[100],
+            width: 175,
+            height: 250,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Container(
+                      color: Colors.grey[100],
 
-                    height: 140,
-                    child: Image.network(product.imageURL,),
+                      height: 140,
+                      child: Image.network(product.imageURL,),
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
 
-                Text(product.name, style: const TextStyle(fontSize: 15),),
+                  Text(product.name, style: const TextStyle(fontSize: 15),),
 
-                const SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
 
 
-                RatingBarIndicator(
-                  rating: product.rating,
-                  itemCount: 5,
-                  itemSize: 15.0,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, _) =>
-                  const Icon(
-                    Icons.star,
-                    color: Colors.amber,
+                  RatingBarIndicator(
+                    rating: product.rating,
+                    itemCount: 5,
+                    itemSize: 15.0,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, _) =>
+                    const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
                   ),
-                ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "\$${product.price}", style: const TextStyle(fontSize: 15,),),
-                    const Icon(Icons.shopping_cart, color: Colors.deepOrange,),
-                  ],
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "\$${product.price}", style: const TextStyle(fontSize: 15,),),
+                      const Icon(Icons.shopping_cart, color: Colors.deepOrange,),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

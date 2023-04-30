@@ -1,8 +1,15 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:expandable/expandable.dart';
+import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gdsc_flutter_course_session4_widgets_part2/product.dart';
 import 'package:gdsc_flutter_course_session4_widgets_part2/product_card.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/screen1.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/screen2.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/signin_screen.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/signup_screen.dart';
 
 
 
@@ -56,7 +63,6 @@ Color inkwellTextColor = Colors.black;
 
               mainAxisAlignment: MainAxisAlignment.center,
               children:  [
-
 
                 InkWell(
                   child: Image.asset("assets/dash.png"),
@@ -129,6 +135,20 @@ If this widget has a child, it refers to that child for its sizing behavior. If 
  */
 
 /*
+class MYApp extends StatefulWidget {
+  const MYApp({Key? key}) : super(key: key);
+
+  @override
+  State<MYApp> createState() => _MYAppState();
+}
+
+class _MYAppState extends State<MYApp> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
 void main() => runApp( MyApp());
 
 class MyApp extends StatefulWidget {
@@ -144,6 +164,7 @@ Color textColor = Colors.black;
 
   @override
   Widget build(BuildContext context) {
+    print("refreshing build again");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -306,7 +327,25 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children:  const [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Card(
+                  elevation: 5,
+                  child: ListTile(
+                    tileColor: Colors.white,
+                    leading: Icon(Icons.settings),
+                    title: Text("Title"),
+                    trailing: Icon(Icons.add),
+                  ),
+                ),
+              ),
+
+              Divider(),
+
+
+
+
 
               Padding(
                 padding: EdgeInsets.all(8.0),
@@ -381,18 +420,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Contact newContact = Contact(name: "Ali", phoneNumber: "1234",  );
 
   List<Contact> contacts = [
     Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png"),
     Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png"),
-    Contact(name: "Mariam Alaa", phoneNumber: '01111011011', imageURL: "assets/dash3.png"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png"),
     Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png"),
     Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png"),
-    Contact(name: "Mariam Alaa", phoneNumber: '01111011011', imageURL: "assets/dash3.png"),
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png"),
     Contact(name: "Mohamed Mahmoud", phoneNumber: '01001412578', imageURL: "assets/dash.png"),
     Contact(name: "Ali Abdulrahman", phoneNumber: '01234567891', imageURL: "assets/dash2.png"),
-    Contact(name: "Mariam Alaa", phoneNumber: '01111011011', imageURL: "assets/dash3.png")
-
+    Contact(name: "Mariam Alaa",     phoneNumber: '01111011011', imageURL: "assets/dash3.png")
   ];
 
   @override
@@ -404,7 +443,8 @@ class _MyAppState extends State<MyApp> {
           title: const Text("Contacts"),
         ),
 
-        body: Center(
+        body:
+        Center(
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -434,7 +474,9 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
         ),
-floatingActionButton: FloatingActionButton(onPressed: () {  },child: const Icon(Icons.add),),
+
+
+      floatingActionButton: FloatingActionButton(onPressed: () {  },child: const Icon(Icons.add),),
       ),
     );
   }
@@ -632,7 +674,7 @@ class _MyAppState extends State<MyApp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:[
                   Container(
-                    height: 700, //you must contain the listview.builder with a defined-size container
+                    //height: 700, //you must contain the listview.builder with a defined-size container
                     //otherwise, you'll get RenderBox error (failed to assert: has size)
                     child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -640,8 +682,6 @@ class _MyAppState extends State<MyApp> {
 
 
                               child: ExpansionTile(
-
-
                                 leading: CircleAvatar(
                                   radius: 33,
                                   child: CircleAvatar(
@@ -666,6 +706,11 @@ class _MyAppState extends State<MyApp> {
 
 
                                 children: [
+                                  CircleAvatar(
+                                    radius: 50,
+                                    foregroundImage: AssetImage("assets/dash.png"),
+
+                                  ),
                                   SizedBox(
                                     height: 100,
                                     child: Text("${contacts[0].about}"),
@@ -676,6 +721,57 @@ class _MyAppState extends State<MyApp> {
                             ),
                           ),
                     ),
+
+
+
+                  Container(
+                    height: 700, //you must contain the listview.builder with a defined-size container
+                    //otherwise, you'll get RenderBox error (failed to assert: has size)
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+
+
+                        child: ExpansionTile(
+                          leading: CircleAvatar(
+                            radius: 33,
+                            child: CircleAvatar(
+                              radius: 27,
+                              backgroundColor: Colors.white,
+                              /////////////////////////////////////
+                              //to avoid run-time errors if the imageURL was null, add a default image
+                              foregroundImage: AssetImage("${contacts[0].imageURL!=null?contacts[0].imageURL:("assets/flappy_dash.gif")}"),
+                            ),
+                          ),
+                          title: Text(contacts[0].name, style: const TextStyle(color: Colors.black),),
+                          subtitle: Text("${contacts[0].phoneNumber}", style: const TextStyle(color: Colors.black),),
+                          trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
+                            setState(() {
+                              contacts.remove(contacts[0]);
+                            });
+
+                          },),
+                          backgroundColor: Colors.white,
+                          iconColor: Colors.black,
+                          textColor: Colors.black,
+
+
+                          children: [
+                            CircleAvatar(
+                              radius: 50,
+                              foregroundImage: AssetImage("assets/dash.png"),
+
+                            ),
+                            SizedBox(
+                              height: 100,
+                              child: Text("${contacts[0].about}"),
+
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ]
             ),
           ),
@@ -978,13 +1074,398 @@ class _MyAppState extends State<MyApp> {
 
 
 
+//-------------------------------------------------------------////-------------------------------------------------------------//
+//--------------------- Navigation between Flutter app screens------------//
+//-------------------------------------------------------------////-------------------------------------------------------------//
+/*
+1- Navigation using tab bar
+2- Navigation using bottom navigation bar
+3- Navigation using navigator.push/,pop
+4- routing
+ */
+
+
+
+
+
+//---------------------------------------------------------//
+//1- Navigation using tab bar
+/*
+void main() =>
+  runApp(MyApp());
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text("welcome screen"),
+              bottom: TabBar(
+                tabs: [
+                  Icon(Icons.login),
+                  Icon(Icons.app_registration),
+                ],
+              ),
+            ),
+            body:  TabBarView(
+              children: [
+                Screen1(),
+                Screen2(),
+                // SignInScreen(),
+                // SignUpScreen(),
+              ],
+
+
+            ),
+            //   length: 2,  //number of tabBar tabs
+            //   child: Scaffold(
+            //     appBar: AppBar(
+            //       leading: const BackButton(),
+            //       title: const Center(
+            //           child: Text(
+            //         "Welcome to our app",
+            //       )),
+            //       bottom: const TabBar(
+            //         tabs: [
+            //           Tab(icon: Icon(Icons.login), text: "SignIn"),
+            //           Tab(icon: Icon(Icons.app_registration), text: "SignUp")
+            //         ],
+            //       ),
+            //     ),
+            //     body: const TabBarView(
+            //       children: [
+            //          SignInScreen(),
+            //          SignUpScreen(),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+          ),
+        ),
+      );
+  }
+}
+*/
+//---------------------------------------------------------//
+
+
+
+
+
+
+
+//---------------------------------------------------------//
+//2- Navigation using bottom navigation bar
+/*
+you may use the Material BottomNavigationBar
+or add to the pubspec.yaml  :   curved_navigation_bar: ^1.0.3
+and use the awesome following CurvedNavigationBar
+ */
+/*
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  int index = 0;
+  final items = <Widget>[
+    const Icon(
+      Icons.login,
+      size: 30,
+      color: Colors.white,
+    ),
+
+    const Icon(
+      Icons.app_registration,
+      size: 30,
+      color: Colors.white,
+    ),
+
+    const Icon(
+      Icons.add,
+      size: 30,
+      color: Colors.white,
+    ),
+  ];
+
+  Widget returnSelectedScreen(int index) {
+    switch (index) {
+      case 0:
+        return const SignInScreen();
+      case 1:
+        return const SignUpScreen();
+      case 2:
+        return const Screen1();
+    }
+    throw Exception();
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home(),
+    );
+  }
+}
+*/
+
+//---------------------------------------------------------//
+
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------////-------------------------------------------------------------//
+//--------------------- Project ------------//
+//-------------------------------------------------------------////-------------------------------------------------------------//
+
+
+
+
+
+
+//-------------------------------------------------------------//
+//that's where we stopped last session (a home page for a shopping app)
+
+//-------------------------------------------------------------//
+//mini project: Products page:
+/*
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  List <Product> products = [
+    sampleProduct1,sampleProduct2,sampleProduct3,sampleProduct4,sampleProduct5,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            leading: const BackButton(color: Colors.black,),
+            title: const Text("Shopping app", style: TextStyle(color: Colors.black),),
+            actions: const [
+              Icon(Icons.notifications, color: Colors.deepOrange),
+              SizedBox(width: 15,)
+            ],
+            centerTitle: true,
+          ),
+
+        body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: products.map((p) => ProductCard(product: p)).toList(),
+
+              ),
+            ),
+          ),
+
+          floatingActionButton: FloatingActionButton(onPressed: () {  },
+          backgroundColor: Colors.white,
+          child: const Icon(Icons.shopping_cart, color: Colors.deepOrange,),
+           ),
+          ),
+    );
+  }
+}
+*/
+//-------------------------------------------------------------//
+//-------------------------------------------------------------//
+
+
+
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------//
+//Now, let's add to that:
+//1- product details screen
+//2- cart screen
+
+//-------------------------------------------------------------//
+//mini project: Products page:
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  List <Product> products = [
+    sampleProduct1,sampleProduct2,sampleProduct3,sampleProduct4,sampleProduct5,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: const BackButton(color: Colors.black,),
+          title: const Text("Shopping app", style: TextStyle(color: Colors.black),),
+          actions: const [
+            Icon(Icons.notifications, color: Colors.deepOrange),
+            SizedBox(width: 15,)
+          ],
+          centerTitle: true,
+        ),
+
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: products.map((p) => ProductCard(product: p)).toList(),
+
+            ),
+          ),
+        ),
+
+        floatingActionButton: FloatingActionButton(onPressed: () {  },
+          backgroundColor: Colors.white,
+          child: const Icon(Icons.shopping_cart, color: Colors.deepOrange,),
+        ),
+      ),
+    );
+  }
+}
+
+//-------------------------------------------------------------//
+//-------------------------------------------------------------//
 
 //-------------------------------------------------------------//
 //
 
+//-------------------------------------------------------------//
+
+
+
+
+
+
 
 
 //-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------//
+//
+
+//-------------------------------------------------------------//
+
+
+
+
+
+
+
 
 //-------------------------------------------------------------//
 //
@@ -1079,49 +1560,3 @@ class _MyAppState extends State<MyApp> {
 //-------------------------------------------------------------//
 //
 
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
-
-//-------------------------------------------------------------//
-//
-
-//-------------------------------------------------------------//
