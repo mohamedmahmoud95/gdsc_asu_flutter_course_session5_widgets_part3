@@ -5,13 +5,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:gdsc_flutter_course_session4_widgets_part2/product.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/Model/appUser.dart';
+
+import '../Model/product.dart';
+
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product product;
+  final AppUser appUser;
 
 
-  const ProductDetailsScreen({Key? key, required this.product}) : super(key: key);
+  const ProductDetailsScreen({Key? key, required this.product, required this.appUser}) : super(key: key);
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -20,7 +24,6 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   int numInCart = 0;
-
   bool addedToFavorite = false;
   Color favColor = Colors.orange.shade200;
   Color regularColor = Colors.orange.shade100;
@@ -33,7 +36,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white10,
           elevation: 0,
-          title: Text(widget.product.name, style: const TextStyle(color: Colors.black),),
+//          title: Text(widget.product.name, style: const TextStyle(color: Colors.black),),
 
           leading: BackButton(
             color: Colors.black,
@@ -45,7 +48,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(8,0,8,8),
             child: Column(
             //  mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -130,19 +133,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   child: Row(
                     children: [
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
 
                         children: [
 
-                          Text(widget.product.name, style: const TextStyle(color: Colors.black, fontSize: 30),),
+                          Text("  ${widget.product.name}", style: const TextStyle(color: Colors.black, fontSize: 30),),
                      //     const SizedBox(height: 10),
                         //  Text("\$${widget.product.price}", style: const TextStyle(color: Colors.black, fontSize: 15),),
 
                           const Divider(color: Colors.grey, thickness: 1,),
 
                          Container(
-                         //  height: 50,
                            width: 350,
                            child: ExpansionTile(
                              title: const Text("Description", style: TextStyle(color: Colors.black, fontSize: 18)),
@@ -162,7 +163,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(20,10,20,10),
                   child: Divider(color: Colors.grey, thickness: 1, ),
                 ),
 
@@ -214,7 +215,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   style: ElevatedButton.styleFrom(shape: const StadiumBorder(),
                       backgroundColor: Colors.black, padding: const EdgeInsets.fromLTRB(20,12,20,12) ),
 
-                    onPressed: (){},
+                    onPressed: (){
+                    setState(() {
+                      widget.appUser.inCartProducts.add(widget.product);
+                    });
+                    },
                     child: const Text("add to cart",style: TextStyle(color: Colors.white, fontSize: 20, ))),
                   ],
                 ),

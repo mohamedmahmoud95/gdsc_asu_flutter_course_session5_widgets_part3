@@ -3,13 +3,15 @@ import 'package:expandable/expandable.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gdsc_flutter_course_session4_widgets_part2/product.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/Screens/cart_screen.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/Screens/market_screen.dart';
 import 'package:gdsc_flutter_course_session4_widgets_part2/product_card.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gdsc_flutter_course_session4_widgets_part2/screen1.dart';
 import 'package:gdsc_flutter_course_session4_widgets_part2/screen2.dart';
-import 'package:gdsc_flutter_course_session4_widgets_part2/signin_screen.dart';
-import 'package:gdsc_flutter_course_session4_widgets_part2/signup_screen.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/Screens/signin_screen.dart';
+
+import 'Model/product.dart';
 
 
 
@@ -1338,44 +1340,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  List <Product> products = [
-    sampleProduct1,sampleProduct2,sampleProduct3,sampleProduct4,sampleProduct5,
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: const BackButton(color: Colors.black,),
-          title: const Text("Shopping app", style: TextStyle(color: Colors.black),),
-          actions: const [
-            Icon(Icons.notifications, color: Colors.deepOrange),
-            SizedBox(width: 15,)
-          ],
-          centerTitle: true,
-        ),
-
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Wrap(
-              spacing: 10,
-              runSpacing: 10,
-              children: products.map((p) => ProductCard(product: p)).toList(),
-
-            ),
-          ),
-        ),
-
-        floatingActionButton: FloatingActionButton(onPressed: () {  },
-          backgroundColor: Colors.white,
-          child: const Icon(Icons.shopping_cart, color: Colors.deepOrange,),
-        ),
-      ),
+      home: MarketScreen(),
     );
   }
 }

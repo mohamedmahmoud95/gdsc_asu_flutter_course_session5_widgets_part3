@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:gdsc_flutter_course_session4_widgets_part2/product_details_screen.dart';
-import 'product.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/Screens/product_details_screen.dart';
+import 'Model/appUser.dart';
+import 'Model/product.dart';
 
 
 
@@ -19,7 +20,7 @@ class ProductCard extends StatelessWidget {
         onTap: (){
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) =>  (ProductDetailsScreen(product: product)),
+              builder: (context) =>  (ProductDetailsScreen(product: product, appUser: sampleAppUser,)),
             ),
           );
         },
