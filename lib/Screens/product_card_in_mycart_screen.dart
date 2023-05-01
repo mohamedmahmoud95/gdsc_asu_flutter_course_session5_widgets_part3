@@ -97,22 +97,14 @@ class _ProductCardInMyCartScreenState extends State<ProductCardInMyCartScreen> {
                       onTap: (){
                           setState(() {
                               numInCart++;
-
                             });
                             }
                         ,),
-
                     ],
                   ),
-
                 ),
-
-
               ],
             ),
-
-
-
           ],
         ),
       ),
