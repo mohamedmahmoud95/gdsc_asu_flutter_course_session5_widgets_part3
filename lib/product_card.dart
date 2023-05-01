@@ -8,11 +8,17 @@ import 'Model/product.dart';
 
 
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   Product product;
+  final AppUser appUser;
 
-  ProductCard({Key? key, required this.product}) : super(key: key);
+  ProductCard({Key? key, required this.product, required this.appUser}) : super(key: key);
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return
@@ -20,14 +26,13 @@ class ProductCard extends StatelessWidget {
         onTap: (){
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) =>  (ProductDetailsScreen(product: product, appUser: sampleAppUser,)),
+              builder: (context) =>  (ProductDetailsScreen(product: widget.product, appUser: sampleAppUser,)),
             ),
           );
         },
         child: Card(
 
           child: SizedBox(
-
             width: 175,
             height: 250,
             child: Padding(
@@ -40,19 +45,19 @@ class ProductCard extends StatelessWidget {
                       color: Colors.grey[100],
 
                       height: 140,
-                      child: Image.network(product.imageURL,),
+                      child: Image.network(widget.product.imageURL,),
                     ),
                   ),
 
                   const SizedBox(height: 20,),
 
-                  Text(product.name, style: const TextStyle(fontSize: 15),),
+                  Text(widget.product.name, style: const TextStyle(fontSize: 15),),
 
                   const SizedBox(height: 10,),
 
 
                   RatingBarIndicator(
-                    rating: product.rating,
+                    rating: widget.product.rating,
                     itemCount: 5,
                     itemSize: 15.0,
                     physics: const BouncingScrollPhysics(),
@@ -67,8 +72,12 @@ class ProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "\$${product.price}", style: const TextStyle(fontSize: 15,),),
-                      const Icon(Icons.shopping_cart, color: Colors.deepOrange,),
+                        "\$${widget.product.price}", style: const TextStyle(fontSize: 15,),),
+                   InkWell(child: const Icon(Icons.shopping_cart,  color: Colors.deepOrange, size: 15,),
+                       onTap: (){
+                         widget.appUser.inCartProducts.add(widget.product);
+                       }
+                         ,),
                     ],
                   ),
                 ],

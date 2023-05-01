@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:gdsc_flutter_course_session4_widgets_part2/Model/appUser.dart';
 
 import '../Model/product.dart';
 import '../product_card.dart';
@@ -25,8 +26,8 @@ class _MarketScreenState extends State<MarketScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: const BackButton(color: Colors.black,),
-        title: const Text("Shopping app", style: TextStyle(color: Colors.black),),
+       // leading: const BackButton(color: Colors.black,),
+        title:  Text("Purse-nality", style: TextStyle(color: Colors.orange.shade900, fontSize: 25,fontWeight: FontWeight.normal),),
         actions: const [
           Icon(Icons.notifications, color: Colors.deepOrange),
           SizedBox(width: 15,)
@@ -34,21 +35,24 @@ class _MarketScreenState extends State<MarketScreen> {
         centerTitle: true,
       ),
 
-      body: Padding(
+      body: Center(
+        child:
+      Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: products.map((p) => ProductCard(product: p)).toList(),
+            spacing: 20,
+            runSpacing: 20,
+            children: products.map((p) => ProductCard(product: p, appUser: sampleAppUser,)).toList(),
 
           ),
         ),
       ),
+      ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MyCartScreen(),));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  MyCartScreen(appUser: sampleAppUser,),));
         },
         backgroundColor: Colors.white,
         child: const Icon(Icons.shopping_cart, color: Colors.deepOrange,),
